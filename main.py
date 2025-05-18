@@ -7,7 +7,7 @@ import numpy as np
 # FUNÇÃO PARA DADOS HISTÓRICOS:
 def historical_data(ticker, start_date, end_date, interval):
     df = yf.download(tickers=ticker, start=start_date, end=end_date, interval=interval)
-    df.columns = df.columns.droplevel(1)
+    df.columns = df.columns.droplevel(1) # Tratando erro no dataframe:
     df['Return'] = df['Close'].pct_change() # Adicionando coluna de Retornos:
     df['Volatility'] = df['High'] - df['Low'] # Adicionando coluna de Volatilidade:
     return df
@@ -91,7 +91,7 @@ st.write(f'-3ª Vol Negativa: :green[{third_minimum_volatility:.2f}].')
 
 st.header("", divider='rainbow')
 st.subheader(':orange[Gráfico]')
-fig =  st.line_chart(historical_data(ticker, start_date, end_date, interval)['Close'])
+fig =  st.line_chart(historical_data(ticker, start_date, end_date, interval)['Close']) # Gráfico:
 st.header("", divider='rainbow')
 
 
